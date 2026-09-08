@@ -1,6 +1,10 @@
+import { useState } from 'react'
 import './App.css'
+import ProductList from './components/ProductList'
 
 function App() {
+
+  const [cart, setCart] = useState([])
 
   const products = [
     {
@@ -29,20 +33,28 @@ function App() {
     },
   ]
 
+  function addToCart(product){
+    setCart([
+      ...cart, product
+    ])
+  }
+
   return (
     <div className='container'>
       <h1>My Store</h1>
-      <div className='product-list'>
-        {
-          products.map((product)=> (
-            <div className='product-card' key={product.id}>
-              <img src={product.image} alt={product.name} />
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-            </div>
-          ))
-        }
-      </div>
+      <ProductList products={products} addToCart={addToCart}/>
+
+      <h2>Cart</h2>
+      <p>Total items: {cart.length}</p>
+
+      {
+        cart.map((item, index) => (
+          <div key={index}>
+            <p>{item.name}</p>
+            <p>${item.price}</p>
+          </div>
+        ))
+      }
     </div>
   )
 }

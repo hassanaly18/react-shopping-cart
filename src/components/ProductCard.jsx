@@ -1,8 +1,13 @@
 import React from 'react'
 
-const ProductCard = () => {
+const ProductCard = ({product, addToCart}) => {
   return (
-    <div>ProductCard</div>
+    <div className='product-card' key={product.id}>
+      <img src={product.image} alt={product.name} />
+      <h2>{product.name}</h2>
+      <p>{product.price}</p>
+      <button onClick={()=> addToCart(product)} >Add to Cart</button>
+    </div>
   )
 }
 
