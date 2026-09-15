@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import ProductList from './components/ProductList'
+import Cart from './components/Cart'
 
 function App() {
 
@@ -43,18 +44,7 @@ function App() {
     <div className='container'>
       <h1>My Store</h1>
       <ProductList products={products} addToCart={addToCart}/>
-
-      <h2>Cart</h2>
-      <p>Total items: {cart.length}</p>
-
-      {
-        cart.map((item, index) => (
-          <div key={index}>
-            <p>{item.name}</p>
-            <p>${item.price}</p>
-          </div>
-        ))
-      }
+      <Cart cart={cart}/>
     </div>
   )
 }
